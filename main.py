@@ -9,7 +9,7 @@ stripe.api_key = os.getenv("stripe_secretkey")
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://whitecapsclo.com"],
+    allow_origins=["https://unfltr.cc"],
     allow_methods=["*"],
     allow_headers=["*"],
 )
