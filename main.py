@@ -17,15 +17,13 @@ app.add_middleware(
 def home():
     return {"status": "ok"}
 class PaymentRequest(BaseModel):
-    price_id: str
+    amount:int
 @app.post("/create-payment-intent")
 def create_payment_intent(gg: PaymentRequest):
     try:
-        price = stripe.Price.retrieve(gg.price_id)
-
         intent = stripe.PaymentIntent.create(
-            amount=price.unit_amount,
-            currency=price.currency,
+            amount=gg.amount,
+            currency="usd",
             automatic_payment_methods={"enabled": True},
         )
         return {"client_secret": intent.client_secret}
